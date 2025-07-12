@@ -1,6 +1,6 @@
 body{
     overflow-x: hidden;
-    background: linear-gradient(to left,rgb(237, 208, 208),rgb(232, 173, 173),rgb(200, 127, 127));
+    background: radial-gradient(white,gray,rgb(75, 73, 73));
 }
 
 nav {
@@ -60,7 +60,7 @@ nav {
 
 }
 .the-image{
-    box-shadow:  10px 10px 10px 10px rgb(179, 176, 176,0.25);
+    box-shadow:  5px 5px 5px 5px rgba(0, 0, 0, 0.25);
     background-color: rgb(12, 5, 5);
     background-color: rgb(204,204,204);
     width:200px;
@@ -77,7 +77,7 @@ nav {
     font-size:20px;
 }
 .the-card{
-    box-shadow:  10px 10px 10px 10px rgba(28, 27, 27, 0.25);
+    box-shadow:  10px 10px  rgb(180, 59, 59);
     width: 800px;
     background-color: black;
 }
@@ -105,6 +105,6 @@ nav {
     margin:20px;
     margin-left:520px;
     height: 150px;
-    box-shadow: 5px 5px rgb(0,0,0.0.25);
+    box-shadow: 10px 10px rgb(44, 41, 41);
 }
 

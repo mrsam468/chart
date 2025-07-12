@@ -53,12 +53,11 @@ async function displaychart() {
 switch(global.page){
     case "/index.html":
 
-console.log(search)
 search.addEventListener("keypress",(e)=>{
     // e.preventDefault()
     if(e.key==="Enter"){
         if(search.value===""){
-            alert("input something")
+            alert("search for a category")
         }else{
            category()
         }
