@@ -1,0 +1,105 @@
+nav {
+  position: fixed;
+ top:0px;
+ left:0px;
+  background-color: aqua;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  
+  align-items: center;
+  padding:10px;
+}
+#cart{
+    width:180px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: beige;
+    border:none;
+    color:black;
+    font-size: 18px;
+    transition: background-color,0.4s;
+
+}
+#cart:hover{
+     background-color: blue;
+    border:none;
+    color:white;
+}
+#search-bar{
+    width:700px;
+    height: 40px;
+    padding-left:29px;
+    border-radius: 350px;
+    font-size:18px;
+    border:none;
+    text-transform: capitalize;
+}
+#the-app{
+    font-size:18px;
+    text-decoration: none;
+    text-transform: capitalize;
+    color:black;
+}
+#body{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 45px;
+}
+.the-image-div{
+    margin-left:24px;
+    width:100%;
+    height: 700px;
+    margin-bottom: -122px;
+    margin-top:0px;
+
+}
+.the-image{
+    box-shadow:  10px 10px 10px 10px rgb(179, 176, 176,0.25);
+    background-color: rgb(12, 5, 5);
+    background-color: rgb(204,204,204);
+    width:200px;
+    height:300px;
+    margin:40px;
+}
+#search-result{
+     display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 45px;
+}
+.title{
+    width:200px;
+    font-size:20px;
+}
+.the-card{
+    box-shadow:  10px 10px 10px 10px rgba(28, 27, 27, 0.25);
+    width: 800px;
+    background-color: black;
+}
+.return{
+     width:180px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: beige;
+    border:none;
+    color:black;
+    font-size: 18px;
+    margin-left:630px;
+}
+.char{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    align-items: center;
+}
+.chart{
+    background-color: rgb(181, 162, 138);
+    width: 400px;
+    padding:20px;
+    margin:20px;
+    margin-left:520px;
+    height: 150px;
+    box-shadow: 5px 5px rgb(0,0,0.0.25);
+}
+
