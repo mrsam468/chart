@@ -9,7 +9,10 @@ async function fetchproduct(){
         div.classList.add('the-image-div')
         div.innerHTML=`<div><img class="the-image" src='${chart.image}' alt="movie.description"></div>
        <div class="title"> <h2>price:$${chart.price}</h2>
-        <p >name:${chart.title}</p><div>`
+        <p >name:${chart.title}</p><div>
+        <div><button class="chart-button">add to chart</button></div>${addEventListener("click",function(e){
+            this.sessionStorage.setItem("title",JSON.stringify(chart))
+        })}`
         document.querySelector("#search-result").appendChild(div)
     });
 }
@@ -35,20 +38,9 @@ search.value=""
 }
 
 
+
 const search=document.querySelector("#search-bar");
-async function displaychart() {
-    const res=await fetch(`https://fakestoreapi.com/carts`)
-    const result=await res.json()
-    result.forEach(chart=>{
-        const div=document.createElement("div");
-        div.classList.add("chart")
-        
-        div.innerHTML=`<h2 class="user">user:${chart.userId}</h2>
-        <p class="user">date:${chart.date}<p>
-        `
-       document.querySelector("#char").appendChild(div)
-    })
-}
+
 
 switch(global.page){
     case "/index.html":
@@ -68,7 +60,24 @@ search.addEventListener("keypress",(e)=>{
 fetchproduct()
 break;
 case "/chart.html":
-displaychart()
+getfromlocal()
+
 
 }
+function getfromlocal(){
+    const session =JSON.parse(sessionStorage.getItem("title"))
+    const div =document.createElement('div');
+    div.classList.add("the-image-div");
+    div.innerHTML=`<div class="card"><img class="the-image" src="${session.image}" alt="the majot city"></div>
+        <div class="title"><h2>price:${session.price}</h2>
+        <p>title:${session.title}</p>
+        </div>`
+    document.querySelector("#james").appendChild(div)
+}
+
+
+    
+    
+
+  
 
