@@ -127,6 +127,15 @@ nav {
     border:none;
     color:white;
 }
+#clear{
+    width:80px;
+    height: 40px;
+    background: rgb(227, 141, 141);
+    color:rgb(41, 39, 39);
+    align-self: center;
+    border-radius: 20px;
+    border:none;
+}
 @media screen and (max-width:600px){
    body{
     overflow-x: hidden;
