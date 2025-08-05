@@ -7,62 +7,56 @@ async function fetchproduct() {
   result.forEach((chart) => {
     const div = document.createElement("div");
     div.classList.add("the-image-div");
-    div.innerHTML = `<a href="details.html"><div><img class="the-image" src='${chart.image}' alt="movie.description"></div><a>
-     <p >${chart.title}</p></div><div class="james">
-       <div class="title"> <h2>$${chart.price}</h2>
-       <p class="description"></p>
-        <button class="chart-button">add to cart</button></div>
+    div.innerHTML = `<a href="details.html"><div><img class="the-image" src='${chart.image}' alt="movie.description"></div></a><a>
+    <div class="james">
+     <p >${chart.title}</p>
+      <h2>$${chart.price}</h2></div>
+     <div class="title"> <button class="chart-button">add to chart</button></div>
         `;
 
     document.querySelector("#search-result").appendChild(div);
     // document.querySelectorAll("description").style.display="none"
   });
-document.querySelectorAll(".the-image").forEach((image)=>{
-  image.addEventListener("click",(e)=>{
-    let dom =e.target.parentElement.parentElement.innerHTML
-    console.log(dom)
-    localStorage.setItem("details",JSON.stringify(dom))
-  })
-})
+  document.querySelectorAll(".the-image").forEach((image) => {
+    image.addEventListener("click", (e) => {
+      let dom = e.target.parentElement.parentElement.parentElement.innerHTML;
+      console.log(dom);
+      localStorage.setItem("details", JSON.stringify(dom));
+    });
+  });
 
   // buttons aspect
   document.querySelectorAll(".chart-button").forEach((button) => {
     button.addEventListener("click", (e) => {
-      if(button.innerText==="add to cart"){
-           let dom=e.target.parentElement.parentElement.innerHTML
-    
- let storedData = localStorage.getItem('myElements');
-  let dataArray = [];
+      if (button.innerText === "add to cart") {
+        let dom = e.target.parentElement.parentElement.parentElement.innerHTML;
 
-  if (storedData) {
-    try {
-      dataArray = JSON.parse(storedData);
-    } catch (error) {
-      console.error("Error parsing stored data:", error);
-      dataArray = [];
-    }
-  }
-   dataArray.push(dom);
-   try {
-    localStorage.setItem('myElements', JSON.stringify(dataArray));
-  } catch (error) {
-    console.error("Error saving data to localStorage:", error);
-    
-  }
-  button.innerText="remove from cart" 
+        let storedData = localStorage.getItem("myElements");
+        let dataArray = [];
 
-  alert("item added to cart")
-      }else{
-     button.innerHTML="add to cart"
-     setInterval(() => {
-      alert("item removed from cart")
-     }, 300);
+        if (storedData) {
+          try {
+            dataArray = JSON.parse(storedData);
+          } catch (error) {
+            console.error("Error parsing stored data:", error);
+            dataArray = [];
+          }
+        }
+        dataArray.push(dom);
+        try {
+          localStorage.setItem("myElements", JSON.stringify(dataArray));
+        } catch (error) {
+          console.error("Error saving data to localStorage:", error);
+        }
+        button.innerText = "remove from cart";
+        alert("item added to cart");
+      } else {
+        button.innerText = "add to cart ";
+        alert("item removed from cart");
       }
-
-
-  })});
-  }
-
+    });
+  });
+}
 
 async function category() {
   const res = await fetch(`https://fakestoreapi.com/products`);
@@ -99,7 +93,7 @@ switch (global.page) {
       }
     });
     fetchproduct();
-    number()
+    number();
     break;
   case "/index.html":
     search.addEventListener("keypress", (e) => {
@@ -113,28 +107,31 @@ switch (global.page) {
       }
     });
     fetchproduct();
-  number()
+    number();
     break;
   case "/chart.html":
     getfromlocal();
     clearstorage();
     break;
-    case "/details.html":
-      details()
-      console.log("hello world")
+  case "/details.html":
+    details();
+    console.log("hello world");
 }
 function getfromlocal() {
-  const session =JSON.parse( localStorage.getItem("myElements"));
- const div = document.createElement("div");
-  div.classList.add("the-image-div");
+  const session = JSON.parse(localStorage.getItem("myElements"));
+  const div = document.createElement("div");
+  div.classList.add("chart-image");
   div.innerHTML = `${session}`;
-const dom=document.querySelector("#search-result")
- if( dom.innerHTML===null){
-  dom.innerHTML="please add something to cart"
- }
-dom.appendChild(div).lastElementChild.remove();
+  const dom = document.querySelector("#chart");
+  if (dom.innerHTML === null) {
+    dom.innerHTML = "please add something to cart";
+  }
+ 
+  dom.appendChild(
+    div
+  )
+   div.lastElementChild.remove()
 
-  
 }
 function clearstorage() {
   document.querySelector("#clear").addEventListener("click", () => {
@@ -143,16 +140,20 @@ function clearstorage() {
   });
 }
 
-function number(){
-  let count =document.querySelector("#number-of-items")
-  count.innerHTML = JSON.parse(localStorage.getItem("myElements"))?.length || 0
-  
+function number() {
+  let count = document.querySelector("#number-of-items");
+  const storedText = JSON.parse(localStorage.getItem("myElements")).length || 0;
+
+  if (storedText) {
+    console.log("hi");
+    count.innerText = storedText;
+  }
 }
-function details(){
-  const get = JSON.parse(localStorage.getItem("details"))
-  const div = document.createElement("div")
-  div.classList.add("the-image-div")
-  div.innerHTML=`${get}`
-  console.log(div)
-  document.querySelector("section").appendChild(div)
+function details() {
+  const get = JSON.parse(localStorage.getItem("details"));
+  const div = document.createElement("div");
+  div.classList.add("the-image-div");
+  div.innerHTML = `${get}`;
+  console.log(div);
+  document.querySelector("section").appendChild(div);
 }

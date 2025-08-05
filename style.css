@@ -76,6 +76,16 @@ nav {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     margin-top: 45px;
 }
+#chart{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.chart-image{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:40px;
+}
 a{
     width:200px;
     margin-top: -80px;
