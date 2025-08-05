@@ -1,103 +1,158 @@
 const global = {
-    page: window.location.pathname
-}
-async function fetchproduct(){
-    const res = await fetch(`https://fakestoreapi.com/products`);
-    const result=await res.json()
-    result.forEach(chart=> {
-        const div=document.createElement("div")
-        div.classList.add('the-image-div')
-        div.innerHTML=`<div><img class="the-image" src='${chart.image}' alt="movie.description"></div>
-       <div class="title"> <h2>price:$${chart.price}</h2>
-        <p >name:${chart.title}</p></div><div class="james">
-        <button class="chart-button">add to chart</button></div>
-        `
-        document.querySelector("#search-result").appendChild(div)
-});
-     document.querySelectorAll(".chart-button").forEach(button=>{
-        button.addEventListener('click',(e)=>{
-            const dom = e.target.parentElement.parentElement.innerHTML
-            JSON.stringify(sessionStorage.setItem("title",dom))
-        })
-     })
+  page: window.location.pathname,
+};
+async function fetchproduct() {
+  const res = await fetch(`https://fakestoreapi.com/products`);
+  const result = await res.json();
+  result.forEach((chart) => {
+    const div = document.createElement("div");
+    div.classList.add("the-image-div");
+    div.innerHTML = `<a href="details.html"><div><img class="the-image" src='${chart.image}' alt="movie.description"></div><a>
+     <p >${chart.title}</p></div><div class="james">
+       <div class="title"> <h2>$${chart.price}</h2>
+       <p class="description"></p>
+        <button class="chart-button">add to cart</button></div>
+        `;
 
-}      
-async function category() {
-    const res = await fetch(`https://fakestoreapi.com/products`);
-    const result=await res.json()
-  result.forEach(char=>{
+    document.querySelector("#search-result").appendChild(div);
+    // document.querySelectorAll("description").style.display="none"
+  });
+document.querySelectorAll(".the-image").forEach((image)=>{
+  image.addEventListener("click",(e)=>{
+    let dom =e.target.parentElement.parentElement.innerHTML
+    console.log(dom)
+    localStorage.setItem("details",JSON.stringify(dom))
+  })
+})
+
+  // buttons aspect
+  document.querySelectorAll(".chart-button").forEach((button) => {
+    button.addEventListener("click", (e) => {
+      if(button.innerText==="add to cart"){
+           let dom=e.target.parentElement.parentElement.innerHTML
     
-       if(search.value===char.category){
-        const category={char}
-        console.log(category)
-        const div=document.createElement("div")
-        div.classList.add("the-image-div")
-        div.innerHTML=`<div class="card"><img class="the-image" src="${category.char.image}" alt="the majot city"></div>
+ let storedData = localStorage.getItem('myElements');
+  let dataArray = [];
+
+  if (storedData) {
+    try {
+      dataArray = JSON.parse(storedData);
+    } catch (error) {
+      console.error("Error parsing stored data:", error);
+      dataArray = [];
+    }
+  }
+   dataArray.push(dom);
+   try {
+    localStorage.setItem('myElements', JSON.stringify(dataArray));
+  } catch (error) {
+    console.error("Error saving data to localStorage:", error);
+    
+  }
+  button.innerText="remove from cart" 
+
+  alert("item added to cart")
+      }else{
+     button.innerHTML="add to cart"
+     setInterval(() => {
+      alert("item removed from cart")
+     }, 300);
+      }
+
+
+  })});
+  }
+
+
+async function category() {
+  const res = await fetch(`https://fakestoreapi.com/products`);
+  const result = await res.json();
+  result.forEach((char) => {
+    if (search.value === char.category) {
+      const category = { char };
+      console.log(category);
+      const div = document.createElement("div");
+      div.classList.add("the-image-div");
+      div.innerHTML = `<div class="card"><img class="the-image" src="${category.char.image}" alt="the majot city"></div>
         <div class="title"><h2>price:${category.char.price}</h2>
         <p>name:${category.char.title}</p>
         <button class="chart-button">add to chart</button></div>
-        </div>`
-        document.querySelector("#body").appendChild(div)
-       }
-       
+        </div>`;
+      document.querySelector("#body").appendChild(div);
     }
-)
-search.value=""
+  });
+  search.value = "";
 }
 
+const search = document.querySelector("#search-bar");
 
-
-const search=document.querySelector("#search-bar");
-
-
-switch(global.page){
-    case "/":
-        search.addEventListener("keypress",(e)=>{
-    // e.preventDefault()
-    if(e.key==="Enter"){
-        if(search.value===""){
-            alert("search for a category")
-        }else{
-           category()
+switch (global.page) {
+  case "/":
+    search.addEventListener("keypress", (e) => {
+      // e.preventDefault()
+      if (e.key === "Enter") {
+        if (search.value === "") {
+          alert("search for a category");
+        } else {
+          category();
         }
-    }
-
-}
-)
-fetchproduct()
-break;
-    case "/index.html":
-
-search.addEventListener("keypress",(e)=>{
-    // e.preventDefault()
-    if(e.key==="Enter"){
-        if(search.value===""){
-            alert("search for a category")
-        }else{
-           category()
+      }
+    });
+    fetchproduct();
+    number()
+    break;
+  case "/index.html":
+    search.addEventListener("keypress", (e) => {
+      // e.preventDefault()
+      if (e.key === "Enter") {
+        if (search.value === "") {
+          alert("search for a category");
+        } else {
+          category();
         }
-    }
+      }
+    });
+    fetchproduct();
+  number()
+    break;
+  case "/chart.html":
+    getfromlocal();
+    clearstorage();
+    break;
+    case "/details.html":
+      details()
+      console.log("hello world")
+}
+function getfromlocal() {
+  const session =JSON.parse( localStorage.getItem("myElements"));
+ const div = document.createElement("div");
+  div.classList.add("the-image-div");
+  div.innerHTML = `${session}`;
+const dom=document.querySelector("#search-result")
+ if( dom.innerHTML===null){
+  dom.innerHTML="please add something to cart"
+ }
+dom.appendChild(div).lastElementChild.remove();
 
+  
 }
-)
-fetchproduct()
-break;
-case "/chart.html":
-getfromlocal()
-clearstorage()
+function clearstorage() {
+  document.querySelector("#clear").addEventListener("click", () => {
+    localStorage.clear();
+    document.body.innerHTML = "";
+  });
+}
 
+function number(){
+  let count =document.querySelector("#number-of-items")
+  count.innerHTML = JSON.parse(localStorage.getItem("myElements"))?.length || 0
+  
 }
-function getfromlocal(){
-    const session =sessionStorage.getItem("title")
-    const div =document.createElement('div');
-    div.classList.add("the-image-div");
-    div.innerHTML=`${session}`
-    
-    document.querySelector("#james").appendChild(div).lastElementChild.remove()
-}
-function clearstorage(){
-document.querySelector("#clear").addEventListener("click",()=>{
-    sessionStorage.clear()
-document.body.innerHTML=""
-})
+function details(){
+  const get = JSON.parse(localStorage.getItem("details"))
+  const div = document.createElement("div")
+  div.classList.add("the-image-div")
+  div.innerHTML=`${get}`
+  console.log(div)
+  document.querySelector("section").appendChild(div)
 }
