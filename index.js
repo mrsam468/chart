@@ -29,6 +29,27 @@ async function fetchproduct() {
   document.querySelectorAll(".chart-button").forEach((button) => {
     button.addEventListener("click", (e) => {
       if (button.innerText === "remove from cart") {
+
+let dom = e.target.parentElement.parentElement.parentElement.innerHTML;
+
+        let storedData = localStorage.removeItem("myElements",JSON.stringify(dom));
+        let dataArray = [];
+
+        if (storedData) {
+          try {
+            dataArray = JSON.parse(storedData);
+          } catch (error) {
+            console.error("Error parsing stored data:", error);
+            dataArray = [];
+          }
+        }
+        dataArray.push(dom);
+        try {
+          localStorage.setItem("myElements", JSON.stringify(dataArray));
+        } catch (error) {
+          console.error("Error saving data to localStorage:", error);
+        }
+
        button.innerText = "add to cart ";
         document.body.insertAdjacentHTML(`afterbegin`,
           `<div id="alert"></div>`)
