@@ -128,24 +128,31 @@ switch (global.page) {
 }
 function getfromlocal() {
   const session = JSON.parse(localStorage.getItem("myElements"));
-  const div = document.createElement("div");
+  
+  if (session) {
+   const div = document.createElement("div");
   div.classList.add("chart-image");
   div.innerHTML = `${session}`;
   const dom = document.querySelector("#chart");
-  if (dom.innerHTML === null) {
-    dom.innerHTML = "please add something to cart";
+  dom.appendChild(div)
+
+    
+  }else{
+
+    document.body.innerHTML = `<h2 class="nothing">Please Add Item To  Cart</h2>`
   }
  
-  dom.appendChild(
-    div
-  )
-   div.lastElementChild.remove()
+  
+  
 
 }
 function clearstorage() {
-  document.querySelector("#clear").addEventListener("click", () => {
+  setInterval(()=>{
+ document.querySelector("#clear").addEventListener("click", () => {
     localStorage.clear();
-    document.body.innerHTML = "";
+    document.body.innerHTML = `<h2 class="nothing">Please Add Item To  Cart</h2>`;
+  },100)
+ 
   });
 }
 
@@ -153,7 +160,7 @@ function number() {
   let count = document.querySelector("#number-of-items");
  
   setInterval(()=>{
- var storedText = JSON.parse(localStorage.getItem("myElements")).length || 0;
+ var storedText = JSON.parse(localStorage.getItem("myElements"))?.length || 0;
  count.innerHTML = storedText ||0;
   },100)
     

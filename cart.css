@@ -1,0 +1,133 @@
+body{
+      background: radial-gradient(white,gray,rgb(75, 73, 73));
+      display: grid;
+      grid-template-columns: 1fr ;
+      justify-content: center;
+}
+a{
+    text-decoration: none;
+    font-size:22px;
+    font-family: lato,sans-serif;
+    font-weight: bold;
+    color:white;
+}
+.the-image-div{
+    margin-left:24px;
+    width:100%;
+    height: 700px;
+    margin-bottom: -122px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top:0px;
+
+}
+.the-image{
+    box-shadow:  5px 5px 5px 5px rgba(0, 0, 0, 0.25);
+    background-color: rgb(12, 5, 5);
+    background-color: rgb(204,204,204);
+    width:200px;
+    height:300px;
+    margin:40px;
+}
+#chart{
+    margin-left:500px;
+   display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.chart-image{
+      display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:40px; ;
+}
+a{
+    width:200px;
+    margin-top: 30px;
+    /* margin-left: 40px; */
+    text-align: center;
+    align-items: center;
+}
+.title{
+    width:200px;
+    font-size:20px;
+    margin-left: 30px;
+}
+.the-card{
+    
+    box-shadow:  10px 10px  rgb(180, 59, 59);
+    width: 800px;
+    background-color: black;
+    
+}
+.return{
+     width:180px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: beige;
+    border:none;
+    color:black;
+    font-size: 18px;
+    margin-left:630px;
+}
+#index{
+    text-decoration: none;
+    color:white;
+}
+.char{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    align-items: center;
+}
+.chart{
+    background-color: rgb(181, 162, 138);
+    width: 400px;
+    padding:20px;
+    margin:20px;
+    margin-left:520px;
+    height: 150px;
+    box-shadow: 10px 10px rgb(44, 41, 41);
+}
+.chart-button{
+      width:180px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: beige;
+    border:none;
+    color:black;
+    font-size: 18px;
+    transition: background-color,0.4s;
+}
+.chart-button:hover{
+    background-color: blue;
+    border:none;
+    color:white;
+}
+#clear{
+    width:80px;
+    height: 40px;
+    background: rgb(227, 141, 141);
+    color:rgb(41, 39, 39);
+    align-self: center;
+    border-radius: 20px;
+    border:none;
+}
+.james{
+    margin-left: 56px;;
+}
+.cart-img{
+    width:50px;
+}
+.nothing{
+    width:600px;
+    margin-top: 180px;
+    margin-left: 450px;
+    font-size:48px;
+    font-family: lato, sans-serif;
+    font-weight: bold;
+    color:red;
+    
+}
