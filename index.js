@@ -28,8 +28,16 @@ async function fetchproduct() {
   // buttons aspect
   document.querySelectorAll(".chart-button").forEach((button) => {
     button.addEventListener("click", (e) => {
-      if (button.innerText === "add to cart") {
-        let dom = e.target.parentElement.parentElement.parentElement.innerHTML;
+      if (button.innerText === "remove from cart") {
+       button.innerText = "add to cart ";
+        document.body.insertAdjacentHTML(`afterbegin`,
+          `<div id="alert"></div>`)
+          const toast_container = document.querySelector("#alert")
+          toast_container.innerHTML=`<p id="alert-paragraph">item romoved from cart</p>`
+
+          document.querySelector("#alert-paragraph").style.backgroundColor="#ed2849"
+      } else {
+ let dom = e.target.parentElement.parentElement.parentElement.innerHTML;
 
         let storedData = localStorage.getItem("myElements");
         let dataArray = [];
@@ -48,11 +56,12 @@ async function fetchproduct() {
         } catch (error) {
           console.error("Error saving data to localStorage:", error);
         }
-        button.innerText = "remove from cart";
-        alert("item added to cart");
-      } else {
-        button.innerText = "add to cart ";
-        alert("item removed from cart");
+        button.innerText="remove from cart"
+
+          document.body.insertAdjacentHTML(`afterbegin`,
+          `<div id="alert"></div>`)
+          const toast_container = document.querySelector("#alert")
+          toast_container.innerHTML=`<p id="alert-paragraph">item added to cart</p>`
       }
     });
   });
@@ -142,12 +151,12 @@ function clearstorage() {
 
 function number() {
   let count = document.querySelector("#number-of-items");
-  const storedText = JSON.parse(localStorage.getItem("myElements")).length || 0;
-
-  if (storedText) {
-    console.log("hi");
-    count.innerText = storedText;
-  }
+ 
+  setInterval(()=>{
+ var storedText = JSON.parse(localStorage.getItem("myElements")).length || 0;
+ count.innerHTML = storedText ||0;
+  },100)
+    
 }
 function details() {
   const get = JSON.parse(localStorage.getItem("details"));
