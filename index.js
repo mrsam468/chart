@@ -20,7 +20,6 @@ async function fetchproduct() {
   document.querySelectorAll(".the-image").forEach((image) => {
     image.addEventListener("click", (e) => {
       let dom = e.target.parentElement.parentElement.parentElement.innerHTML;
-      console.log(dom);
       localStorage.setItem("details", JSON.stringify(dom));
     });
   });
@@ -29,10 +28,11 @@ async function fetchproduct() {
   document.querySelectorAll(".chart-button").forEach((button) => {
     button.addEventListener("click", (e) => {
       if (button.innerText === "remove from cart") {
-
-let dom = e.target.parentElement.parentElement.parentElement.innerHTML;
-
-        let storedData = localStorage.removeItem("myElements",JSON.stringify(dom));
+        let dom = e.target.parentElement.parentElement.parentElement.innerHTML;
+        let storedData = localStorage.removeItem(
+          "myElements",
+          JSON.stringify(dom)
+        );
         let dataArray = [];
 
         if (storedData) {
@@ -50,15 +50,19 @@ let dom = e.target.parentElement.parentElement.parentElement.innerHTML;
           console.error("Error saving data to localStorage:", error);
         }
 
-       button.innerText = "add to cart ";
-        document.body.insertAdjacentHTML(`afterbegin`,
-          `<div id="alert"></div>`)
-          const toast_container = document.querySelector("#alert")
-          toast_container.innerHTML=`<p id="alert-paragraph">item romoved from cart</p>`
+        button.innerText = "add to cart ";
+        document.body.insertAdjacentHTML(
+          `afterbegin`,
+          `<div id="alert"></div>`
+        );
+        const toast_container = document.querySelector("#alert");
+        toast_container.innerHTML = `<p id="alert-paragraph">item romoved from cart</p>`;
 
-          document.querySelector("#alert-paragraph").style.backgroundColor="#ed2849"
+        document.querySelector("#alert-paragraph").style.backgroundColor =
+          "#ed2849";
       } else {
- let dom = e.target.parentElement.parentElement.parentElement.innerHTML;
+        
+        let dom = [e.target.parentElement.parentElement.parentElement.innerHTML]
 
         let storedData = localStorage.getItem("myElements");
         let dataArray = [];
@@ -77,12 +81,14 @@ let dom = e.target.parentElement.parentElement.parentElement.innerHTML;
         } catch (error) {
           console.error("Error saving data to localStorage:", error);
         }
-        button.innerText="remove from cart"
+        button.innerText = "remove from cart";
 
-          document.body.insertAdjacentHTML(`afterbegin`,
-          `<div id="alert"></div>`)
-          const toast_container = document.querySelector("#alert")
-          toast_container.innerHTML=`<p id="alert-paragraph">item added to cart</p>`
+        document.body.insertAdjacentHTML(
+          `afterbegin`,
+          `<div id="alert"></div>`
+        );
+        const toast_container = document.querySelector("#alert");
+        toast_container.innerHTML = `<p id="alert-paragraph">item added to cart</p>`;
       }
     });
   });
@@ -149,42 +155,52 @@ switch (global.page) {
 }
 function getfromlocal() {
   const session = JSON.parse(localStorage.getItem("myElements"));
-  
+
   if (session) {
-   const div = document.createElement("div");
-  div.classList.add("chart-image");
-  div.innerHTML = `${session}`;
-  const dom = document.querySelector("#chart");
-  dom.appendChild(div)
+     const div = document.createElement("div");
+    div.classList.add("chart-image");
+    div.innerHTML = `${session}`
+     setInterval(()=>{
+      
+     })
+       const dom = document.querySelector("#chart");
+      dom.appendChild(div)
+   
+    setInterval(() => {
+      
+         let button= document.querySelectorAll(".chart-button")
+    button.forEach(button=>{
+      button.innerHTML=`remove from cart`
+    })
+    }, 10);
 
-    
-  }else{
 
-    document.body.innerHTML = `<h2 class="nothing">Please Add Item To  Cart</h2>`
+  } else {
+    document.body.innerHTML = `<h2 class="nothing">Please Add Item To  Cart</h2>`;
   }
- 
-  
-  
-
 }
 function clearstorage() {
-  setInterval(()=>{
- document.querySelector("#clear").addEventListener("click", () => {
-    localStorage.clear();
-    document.body.innerHTML = `<h2 class="nothing">Please Add Item To  Cart</h2>`;
-  },100)
- 
+  setInterval(() => {
+    document.querySelector("#clear").addEventListener(
+      "click",
+      () => {
+        localStorage.clear();
+        document.body.innerHTML = `<a href="index.html"><h1 id="home">Home</h1><a>
+    <h2 class="nothing">Please Add Item To  Cart</h2>`;
+      },
+      100
+    );
   });
 }
 
 function number() {
   let count = document.querySelector("#number-of-items");
- 
-  setInterval(()=>{
- var storedText = JSON.parse(localStorage.getItem("myElements"))?.length || 0;
- count.innerHTML = storedText ||0;
-  },100)
-    
+
+  setInterval(() => {
+    var storedText =
+      JSON.parse(localStorage.getItem("myElements"))?.length || 0;
+    count.innerHTML = storedText || 0;
+  }, 100);
 }
 function details() {
   const get = JSON.parse(localStorage.getItem("details"));

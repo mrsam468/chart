@@ -6,9 +6,11 @@ body{
 }
 a{
     text-decoration: none;
-    font-size:22px;
+    font-size:12px;
+    font-weight: 400;
+    color:black;
     font-family: lato,sans-serif;
-    font-weight: bold;
+    font-weight: small;
     color:white;
 }
 .the-image-div{
@@ -30,6 +32,23 @@ a{
     width:200px;
     height:300px;
     margin:40px;
+    margin-bottom:-80px;
+}
+p{
+    font-family:lato , sans-serif;
+    font-weight: 400px;
+    font-style:small;
+    font-size:18px;
+    color:black;
+
+}
+h2{
+    font-family:lato , sans-serif;
+    font-weight: 400px;
+    font-style:small;
+    font-size:22px;
+    color:black;
+
 }
 #chart{
     margin-left:500px;
