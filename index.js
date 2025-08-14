@@ -207,6 +207,5 @@ function details() {
   const div = document.createElement("div");
   div.classList.add("the-image-div");
   div.innerHTML = `${get}`;
-  console.log(div);
   document.querySelector("section").appendChild(div);
 }
